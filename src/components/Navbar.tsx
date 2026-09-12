@@ -47,12 +47,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-black/5"
+        scrolled || isOpen
+          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-black/5"
           : "bg-transparent"
       )}
     >
@@ -98,39 +110,50 @@ export function Navbar() {
 
           <button
             type="button"
-            className="md:hidden p-2 text-charcoal"
+            className="md:hidden p-2 text-charcoal rounded-lg hover:bg-black/5 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
           </button>
         </div>
 
+        {/* Mobile menu with frosted glass panel */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300",
-            isOpen ? "max-h-96 pb-6" : "max-h-0"
+            "md:hidden overflow-hidden transition-all duration-300 ease-out",
+            isOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
           )}
         >
-          <div className="flex flex-col gap-4 pt-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-charcoal py-2 border-b border-black/5"
+          <div
+            className={cn(
+              "mt-1 mb-4 rounded-2xl border border-white/40",
+              "bg-background/70 backdrop-blur-2xl",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.08)]",
+              "px-5 py-5"
+            )}
+          >
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-base font-medium text-charcoal py-3 px-3 rounded-xl hover:bg-black/5 active:bg-black/10 transition-colors border-b border-black/5 last:border-0"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a
+                href="https://api.whatsapp.com/send?phone=96563"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex justify-center items-center rounded-full bg-charcoal px-5 py-3 text-sm font-medium text-cream hover:bg-accent transition-colors"
               >
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="https://api.whatsapp.com/send?phone=96563"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex justify-center items-center rounded-full bg-charcoal px-5 py-3 text-sm font-medium text-cream"
-            >
-              Book via WhatsApp
-            </a>
+                Book via WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </nav>
