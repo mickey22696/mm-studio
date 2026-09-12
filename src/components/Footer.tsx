@@ -1,13 +1,5 @@
 import Link from "next/link";
-
-function CameraIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.226 2.226 0 00-1.183-1.084 48.324 48.324 0 00-3.413-.461 48.316 48.316 0 00-3.413.461c-.542.099-1.037.5-1.183 1.084l-.822 1.316z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-    </svg>
-  );
-}
+import Image from "next/image";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -34,17 +26,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cream/10">
-                <CameraIcon className="h-5 w-5 text-accent-light" />
-              </div>
-              <div>
-                <h3 className="font-serif text-xl tracking-wide">
-                  Moments & Memories
-                </h3>
-                <p className="text-xs uppercase tracking-[0.2em] text-cream/60">
-                  Studio · Kuwait
-                </p>
-              </div>
+              <Image
+                src="/logo-mm-studio.png"
+                alt="M&M Studio — Moments & Memories"
+                width={160}
+                height={70}
+                className="h-12 w-auto object-contain brightness-0 invert opacity-90"
+              />
             </div>
             <p className="text-cream/70 max-w-md leading-relaxed text-sm">
               Professional wedding photography and videography. International
