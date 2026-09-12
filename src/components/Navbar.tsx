@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -11,15 +12,6 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
-
-function CameraIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.226 2.226 0 00-1.183-1.084 48.324 48.324 0 00-3.413-.461 48.316 48.316 0 00-3.413.461c-.542.099-1.037.5-1.183 1.084l-.822 1.316z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-    </svg>
-  );
-}
 
 function MenuIcon({ className }: { className?: string }) {
   return (
@@ -75,17 +67,14 @@ export function Navbar() {
             className="flex items-center gap-2 group"
             onClick={() => setIsOpen(false)}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-charcoal text-cream transition group-hover:bg-accent">
-              <CameraIcon className="h-4 w-4" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-serif text-lg md:text-xl tracking-wide text-charcoal">
-                Moments & Memories
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted">
-                Studio · Kuwait
-              </span>
-            </div>
+            <Image
+              src="/logo-mm-studio.png"
+              alt="M&M Studio — Moments & Memories"
+              width={180}
+              height={78}
+              className="h-10 md:h-12 w-auto object-contain transition group-hover:opacity-90"
+              priority
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
