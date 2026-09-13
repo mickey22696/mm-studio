@@ -31,7 +31,13 @@ export default function AboutPage() {
       <section className="pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-cream via-accent/10 to-charcoal/5" />
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-stone-200">
+              <img
+                src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80"
+                alt="Moments & Memories Studio photography"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
             <div>
               <h2 className="font-serif text-2xl md:text-3xl text-charcoal mb-5">
                 Our philosophy
