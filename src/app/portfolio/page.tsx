@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,42 +14,48 @@ const collections = [
     title: "D & J",
     type: "Wedding",
     location: "Kuwait",
-    color: "from-stone-300 to-stone-500",
+    image:
+      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "fm",
     title: "F & M",
     type: "Engagement",
     location: "Kuwait",
-    color: "from-amber-100 to-amber-300",
+    image:
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "rm",
     title: "R & M",
     type: "Wedding",
     location: "Kuwait",
-    color: "from-rose-100 to-rose-300",
+    image:
+      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "dk",
     title: "D & K",
     type: "Wedding",
     location: "Kuwait",
-    color: "from-slate-200 to-slate-400",
+    image:
+      "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "placeholder-1",
-    title: "Coming Soon",
+    id: "sa",
+    title: "S & A",
     type: "Wedding",
     location: "Kuwait",
-    color: "from-neutral-200 to-neutral-400",
+    image:
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80",
   },
   {
-    id: "placeholder-2",
-    title: "Coming Soon",
+    id: "ln",
+    title: "L & N",
     type: "Engagement",
     location: "Kuwait",
-    color: "from-stone-100 to-stone-300",
+    image:
+      "https://images.unsplash.com/photo-1522673607200-164a1b6ed46c?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -76,10 +83,15 @@ export default function PortfolioPage() {
             {collections.map((item) => (
               <article
                 key={item.id}
-                className="group relative aspect-[3/4] overflow-hidden rounded-2xl"
+                className="group relative aspect-[3/4] overflow-hidden rounded-2xl bg-stone-200"
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color} transition-transform duration-700 group-hover:scale-105`}
+                <Image
+                  src={item.image}
+                  alt={`${item.title} — ${item.type} photography`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority={item.id === "dj"}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -109,8 +121,18 @@ export default function PortfolioPage() {
               className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-charcoal transition-colors"
             >
               View on Instagram
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
               </svg>
             </a>
           </div>
