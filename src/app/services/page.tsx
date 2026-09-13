@@ -58,6 +58,12 @@ const additional = [
   },
 ];
 
+const serviceImages = [
+  "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1522673607200-164a1b6ed46c?auto=format&fit=crop&w=900&q=80",
+];
+
 export default function ServicesPage() {
   return (
     <div className="pt-24 md:pt-28">
@@ -106,10 +112,16 @@ export default function ServicesPage() {
                 </ul>
               </div>
               <div
-                className={`aspect-[4/3] rounded-2xl bg-gradient-to-br from-cream to-accent/10 ${
+                className={`relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone-200 ${
                   index % 2 === 1 ? "md:order-1" : ""
                 }`}
-              />
+              >
+                <img
+                  src={serviceImages[index]}
+                  alt={service.title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -137,7 +149,7 @@ export default function ServicesPage() {
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="font-serif text-2xl md:text-3xl text-charcoal mb-4">
-            Let&apos;s plan your coverage
+            Let's plan your coverage
           </h2>
           <p className="text-muted mb-8">
             Every wedding is unique. Message us to discuss packages tailored to
